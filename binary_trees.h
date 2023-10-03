@@ -26,6 +26,18 @@ struct binary_tree_s
 	struct binary_tree_s *right;
 };
 
+/**
+ * struct ancestors_s - ancestor node
+ *
+ * @node: the binary tree node
+ * @next: the next node
+ */
+typedef struct ancestors_s
+{
+        const struct binary_tree_s *node;
+        struct ancestors_s *next;
+} ancestors_t;
+
 typedef struct binary_tree_s binary_tree_t;
 
 typedef struct binary_tree_s bst_t;
