@@ -58,7 +58,7 @@ binary_tree_t *binary_trees_ancestor(
 		const binary_tree_t *first,
 		const binary_tree_t *second)
 {
-	binary_tree_t *first_parent, *second_parent, *r_node;
+	binary_tree_t *first_parent, *second_parent, *r_n;
 	size_t first_ancestors = 0, second_ancestors = 0;
 	ancestors_t *f_head, *s_head, *temp, *s_temp1, *f_temp1;
 
@@ -93,12 +93,9 @@ binary_tree_t *binary_trees_ancestor(
 		s_head = s_head->next;
 		f_head = f_head->next;
 	}
-	if (s_head->node == f_head->node)
-		r_node = (binary_tree_t *)s_head->node;
-	else
-		r_node = NULL;
+	r_n = (s_head->node == f_head->node) ? (binary_tree_t *)s_head->node : NULL;
 	free_list(f_temp1);
 	free_list(s_temp1);
-	return (r_node);
+	return (r_n);
 
 }
