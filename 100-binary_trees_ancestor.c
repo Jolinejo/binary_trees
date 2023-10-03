@@ -93,7 +93,10 @@ binary_tree_t *binary_trees_ancestor(
 		s_head = s_head->next;
 		f_head = f_head->next;
 	}
-	r_node = (binary_tree_t *)s_head->node;
+	if (s_head->node == f_head->node)
+		r_node = (binary_tree_t *)s_head->node;
+	else
+		r_node = NULL;
 	free_list(f_temp1);
 	free_list(s_temp1);
 	return (r_node);
