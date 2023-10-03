@@ -60,16 +60,16 @@ binary_tree_t *binary_trees_ancestor(
 {
 	binary_tree_t *first_parent, *second_parent, *r_node;
 	size_t first_ancestors = 0, second_ancestors = 0;
-	ancestors_t *f_head, *s_head, temp, s_temp1, f_temp1;
+	ancestors_t *f_head, *s_head, *temp, *s_temp1, *f_temp1;
 
 	if (first == NULL || second == NULL)
 		return (NULL);
 	first_parent = first->parent;
 	second_parent = second->parent;
-	*f_head = malloc(sizeof(ancestors_t));
+	f_head = malloc(sizeof(ancestors_t));
 	f_head->node = first;
 	f_head->next = NULL;
-	*s_head = malloc(sizeof(ancestors_t));
+	s_head = malloc(sizeof(ancestors_t));
 	s_head->node = second;
 	s_head->next = NULL;
 	temp = f_head;
