@@ -33,7 +33,7 @@ void swap(bst_t *temp, bst_t *child, bst_t **root)
  */
 void swap_with_successor(bst_t *temp, bst_t **root)
 {
-	bst_t *temp2, *old_parent;
+	bst_t *temp2, *old_parent, *old_right;
 
 	temp2 = temp->right;
 	while (temp2->left)
@@ -48,13 +48,14 @@ void swap_with_successor(bst_t *temp, bst_t **root)
 		temp2->parent->left = temp2;
 	temp2->left = temp->left;
 	temp2->left->parent = temp2;
-	if (old_parent != temp)
-	{
-		old_parent->left = temp2->right;
-		if (temp2->right != NULL)
-			temp2->right->parent = old_parent;
-	}
+	old_right = temp2->right;
 	temp2->right = (old_parent != temp) ? temp->right : temp2->right;
+	if (old_parent != NULL)
+	{
+		old_parent->left = old_right;
+		if (old_right != NULL)
+			old_right->parent = old_parent;
+	}
 	if (temp2->right != NULL)
 		temp2->right->parent = temp2;
 	free(temp);
@@ -80,7 +81,7 @@ bst_t *bst_remove(bst_t *root, int value)
 			if (temp->left == NULL && temp->right == NULL)
 			{
 				free(temp);
-				return (root);
+				return (NULL);
 			}
 			else if (temp->left == NULL)
 			{
