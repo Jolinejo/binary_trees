@@ -54,7 +54,7 @@ void swap_with_successor(bst_t *temp, bst_t **root)
 		if (temp2->right != NULL)
 			temp2->right->parent = old_parent;
 	}
-	temp2->right = (old_parent != temp) ? temp->right : NULL;
+	temp2->right = (old_parent != temp) ? temp->right : temp2->right;
 	if (temp2->right != NULL)
 		temp2->right->parent = temp2;
 	free(temp);
