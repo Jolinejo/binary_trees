@@ -93,18 +93,11 @@ bst_t *bst_remove(bst_t *root, int value)
 				return (root);
 			}
 			else if (temp->left == NULL)
-			{
 				swap(temp, temp->right, &root);
-				return (root);
-			}
 			else if (temp->right == NULL)
-			{
 				swap(temp, temp->left, &root);
-			}
 			else
-			{
 				swap_with_successor(temp, &root);
-			}
 			return (root);
 		}
 		else if (value > temp->n)
