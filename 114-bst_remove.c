@@ -80,8 +80,17 @@ bst_t *bst_remove(bst_t *root, int value)
 		{
 			if (temp->left == NULL && temp->right == NULL)
 			{
+				if (temp == root)
+					root = NULL;
+				else
+				{
+					if (temp->parent->left == temp)
+						temp->parent->left = NULL;
+					else
+						temp->parent->right = NULL;
+				}
 				free(temp);
-				return (NULL);
+				return (root);
 			}
 			else if (temp->left == NULL)
 			{
