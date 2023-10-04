@@ -1,8 +1,8 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_rotate_left - rotate node to the left
- * Description: the movement of the node to down to the left
+ * binary_tree_rotate_right - rotate node to the right
+ * Description: the movement of the node to down to the right
  * @tree: root node to move
  * Return: nothing
  */
