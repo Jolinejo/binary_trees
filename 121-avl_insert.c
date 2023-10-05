@@ -1,46 +1,56 @@
 #include "binary_trees.h"
 /**
+ * check_root - checks if node should be root
+ * @node: node to check
+ * @root: root to assign
+ */
+void check_root(avl_t *node, avl_t **root)
+{
+	if (node->parent == NULL)
+		*root = node;
+}
+/**
  * balance_tree - balances avl tree
  * @node: node to start balancing from
+ * @root: root to assign
  */
-void balance_tree(avl_t *node)
+void balance_tree(avl_t *node, avl_t **root)
 {
-	avl_t *tmp;
-	int balance;
-	int value = node->n;
+	avl_t *balanced;
+	int balance, value = node->n;
 
 	if (node == NULL)
 		return;
-	while (node->parent)
+	node = node->parent;
+	while (node)
 	{
-		balance = binary_tree_balance(node->parent);
+		balance = binary_tree_balance(node);
 		if (balance > 1)
-
-			if (value > node->parent->left->n)
+			if (value > node->left->n)
 			{
-				tmp = node->parent;
-				binary_tree_rotate_left(node->parent->left);
-				binary_tree_rotate_right(tmp);
-				return;
+				balanced = binary_tree_rotate_left(node->left);
+				check_root(balanced, root);
+				balanced = binary_tree_rotate_right(node);
+				check_root(balanced, root);
 			}
 			else
 			{
-				binary_tree_rotate_right(node->parent);
-				return;
+				balanced = binary_tree_rotate_right(node);
+				check_root(balanced, root);
 			}
 		else if (balance < -1)
 		{
-			if (value < node->parent->right->n)
+			if (value < node->right->n)
 			{
-				tmp = node->parent;
-				binary_tree_rotate_right(node->parent->right);
-				binary_tree_rotate_left(tmp);
-				return;
+				balanced = binary_tree_rotate_right(node->right);
+				check_root(balanced, root);
+				balanced = binary_tree_rotate_left(node);
+				check_root(balanced, root);
 			}
 			else
 			{
-				binary_tree_rotate_left(node->parent);
-				return;
+				balanced = binary_tree_rotate_left(node);
+				check_root(balanced, root);
 			}
 		}
 		node = node->parent;
@@ -87,6 +97,6 @@ avl_t *avl_insert(bst_t **tree, int value)
 		second->right = new;
 		new->parent = second;
 	}
-	balance_tree(new);
+	balance_tree(new, tree);
 	return (new);
 }
