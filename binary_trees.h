@@ -38,6 +38,17 @@ typedef struct ancestors_s
         struct ancestors_s *next;
 } ancestors_t;
 
+typedef struct queue_s
+/**
+ * struct queue_s - queue node
+ *
+ * @node: the binary tree node
+ * @next: the next node
+ */
+{
+        struct binary_tree_s *node;
+        struct queue_s *next;
+} queue_t;
 typedef struct binary_tree_s binary_tree_t;
 
 typedef struct binary_tree_s bst_t;
@@ -87,6 +98,7 @@ avl_t *array_to_avl(int *array, size_t size);
 avl_t *avl_remove(avl_t *root, int value);
 avl_t *sorted_array_to_avl(int *array, size_t size);
 int binary_tree_is_heap(const binary_tree_t *tree);
+heap_t *heap_insert(heap_t **root, int value);
 
 /* helper functions */
 int _pow_recursion(int x, int y);
