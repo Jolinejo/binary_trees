@@ -8,10 +8,10 @@
  * Return: A pointer to the created node
  *         NULL on failure
  */
-avl_t *_avl_insert(int *array, int start, int end, avl_t *parent)
+avl_t *_avl_insert(int *array, size_t start, size_t end, avl_t *parent)
 {
 	avl_t *root = NULL;
-	int i = (start + end) / 2;
+	size_t i = (start + end) / 2;
 
 	if (start > end)
 		return (NULL);
@@ -33,7 +33,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 
 	if (array == NULL || size == 0)
 		return (NULL);
-	root = _avl_insert(array, 0, (int)size - 1, NULL);
+	root = _avl_insert(array, 0, size - 1, NULL);
 	return (root);
 
 }
