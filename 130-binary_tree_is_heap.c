@@ -75,7 +75,7 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 	return (res);
 }
 /**
- * validate_parent: validate that parent is greater than children
+ * validate_parent - validate that parent is greater than children
  * @tree: parent
  * Return: 1 if true 0 if not
  */
