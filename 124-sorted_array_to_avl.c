@@ -32,7 +32,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	avl_t *root = NULL;
 
 	if (array == NULL || size == 0)
-		return (0);
+		return (NULL);
 	root = _avl_insert(array, 0, (int)size - 1, NULL);
 	return (root);
 
