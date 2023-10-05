@@ -9,6 +9,8 @@ void balance_tree(avl_t *node)
 	int balance;
 	int value = node->n;
 
+	if (node == NULL)
+		return;
 	while (node->parent)
 	{
 		balance = binary_tree_balance(node->parent);
