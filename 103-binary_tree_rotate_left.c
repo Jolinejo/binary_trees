@@ -14,24 +14,14 @@ binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree)
 		return (NULL);
 	parent = tree->parent;
 
-	/*check if the node was left or right child*/
 	if (parent != NULL && parent->left == tree)
 	{
 		parent->left = tree->right;
-		/*set the new parent of tree node right child*/
 		tree->right->parent = parent;
-		/*
-		 * set the left child of tree node's right child
-		 * as tree node's new right child
-		 */
 		tree->right = tree->right->left;
-		if(tree->right)
+		if (tree->right)
 			tree->right->parent = tree;
-		/*set the old child of the tree as its parent*/
 		tree->parent = parent->left;
-		/*
-		 * set the tree as the left child of the old right child
-		 */
 		parent->left->left =  tree;
 	}
 	else if (parent != NULL)
