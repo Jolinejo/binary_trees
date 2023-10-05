@@ -19,9 +19,13 @@ void balance_tree(avl_t *node)
 				tmp = node->parent;
 				binary_tree_rotate_left(node->parent->left);
 				binary_tree_rotate_right(tmp);
+				return;
 			}
 			else
+			{
 				binary_tree_rotate_right(node->parent);
+				return;
+			}
 		else if (balance < -1)
 		{
 			if (value < node->parent->right->n)
@@ -29,9 +33,13 @@ void balance_tree(avl_t *node)
 				tmp = node->parent;
 				binary_tree_rotate_right(node->parent->right);
 				binary_tree_rotate_left(tmp);
+				return;
 			}
 			else
+			{
 				binary_tree_rotate_left(node->parent);
+				return;
+			}
 		}
 		node = node->parent;
 	}
